@@ -34,13 +34,13 @@
 }
 
 :root {
-    --ink: #111827;
-    --paper: #f8fafc;
-    --accent: #2563eb;
-    --accent-dark: #1e40af;
-    --line: #dbeafe;
-    --text-muted: #64748b;
-    --radius: 8px;
+    --ink: #F8FAFC;
+    --paper: #07111F;
+    --accent: #00E5FF;
+    --accent-dark: #0077B6;
+    --line: #164E63;
+    --text-muted: #94A3B8;
+    --radius: 12px;
 }
 
 body {
@@ -51,8 +51,11 @@ body {
 }
 
 h1,
+h2,
+h3,
 .brand {
     font-family: "Space Grotesk", sans-serif;
+    color: var(--ink);
 }
 
 .container {
@@ -67,7 +70,7 @@ h1,
 ========================= */
 
 .site-header {
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--accent-dark);
 }
 
 .site-header .container {
@@ -96,16 +99,30 @@ h1,
 }
 
 .site-header nav a:hover {
-    color: var(--accent);
+    color: var(--accent-dark);
 }
 
+/* =========================
+   MAIN PORTOFOLIO
+========================= */
+.portfolio-bg {
+    min-height: 100vh;
+    background: linear-gradient(
+        180deg,
+        #07111F 0%,
+        #0F2747 45%,
+        #001B2E 100%
+    );
+}
 
 /* =========================
    HERO SECTION
 ========================= */
 
 .hero {
-    padding: 4.5rem 0 5rem;
+    position: relative;
+    background: transparent;
+    padding: 80px 20px 50px;
 }
 
 .hero-grid {
@@ -140,11 +157,102 @@ h1,
 }
 
 .bio {
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.7);
     max-width: 480px;
     margin-bottom: 1.5rem;
 }
 
+/* =========================
+   EXPERIENCE SECTION
+========================= */
+
+.experience-section {
+    padding: 5rem 0;
+    color: var(--ink);
+}
+
+.section-identity {
+    margin-bottom: 2rem;
+}
+
+.experience-organization {
+    color: var(--accent);
+    font-size: .85rem;
+    font-weight: 700;
+}
+
+.section-identity h2 {
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: .95;
+    color: var(--ink);
+    margin: .5rem 0 1rem;
+}
+
+.section-intro,
+.experience-points {
+    color: var(--text-muted);
+}
+
+.experience-list {
+    margin-left: .4rem;
+    padding-left: 2rem;
+    list-style: none;
+}
+
+.experience-card {
+    position: relative;
+    padding-bottom: 2.5rem;
+}
+
+.experience-card:last-child {
+    padding-bottom: 0;
+}
+
+/* Setiap garis berhenti pada titik berikutnya agar tidak melewati timeline. */
+.experience-card::before {
+    content: "";
+    position: absolute;
+    top: .4rem;
+    left: calc(-2rem - .5px);
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border: 2px solid var(--paper);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.experience-card:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(.4rem + 8px);
+    bottom: calc(-.4rem - 8px);
+    left: calc(-2rem - .5px);
+    width: 1px;
+    background: var(--line);
+    transform: translateX(-50%);
+}
+
+.experience-card h3 {
+    margin: .25rem 0;
+    font-size: 1.25rem;
+}
+
+.experience-timeline {
+    margin-bottom: .75rem;
+    color: var(--text-muted);
+    font-size: .9rem;
+}
+
+.experience-points {
+    padding-left: 1.25rem;
+    max-width: 680px;
+}
+
+.experience-points li + li {
+    margin-top: .5rem;
+}
 
 /* =========================
    BIODATA
@@ -160,8 +268,9 @@ h1,
     font-size: .75rem;
     text-transform: uppercase;
     letter-spacing: .06em;
-    color: var(--text-muted);
+    color: var(--accent-dark);
     margin-bottom: .15rem;
+    font-weight: bold;
 }
 
 .meta-row dd {
@@ -181,18 +290,19 @@ h1,
 
 .social-link {
     display: inline-block;
+    color: var(--ink);
     font-size: .85rem;
     font-weight: 600;
     text-decoration: none;
-    color: white;
-    background-color: var(--ink);
+    background-color: var(--line);
     border-radius: var(--radius);
     padding: .5rem 1.1rem;
     transition: .2s;
 }
 
 .social-link:hover {
-    background-color: var(--accent);
+    color: var(--paper);
+    background-color: var(--ink);
 }
 
 
@@ -212,7 +322,7 @@ h1,
     left: 1.25rem;
     width: 100%;
     height: 100%;
-    background: var(--accent);
+    background: var(--ink);
     border-radius: var(--radius);
     z-index: 0;
 }
@@ -251,6 +361,16 @@ h1,
 ========================= */
 
 @media (max-width: 600px) {
+    .site-header .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .5rem;
+    }
+
+    .site-header nav {
+        gap: 1.25rem;
+    }
+
     .hero-grid {
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -266,4 +386,5 @@ h1,
     .social-links {
         justify-content: flex-start;
     }
+
 }
